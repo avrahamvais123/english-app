@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'Nectarina';
+  src: url('./fonts/._Nectarina-Regular.otf') format('otf');
+}
+@font-face {
+  font-family: 'Malkush';
+  src: url('./fonts/MalkushRegular.otf') format('otf');
+}
+@font-face {
+  font-family: 'Parmesan-light';
+  src: url('./fonts/FbParmesan-Light.otf') format('otf');
+}
+@font-face {
+  font-family: 'Parmesan-regular';
+  src: url('./fonts/FbParmesan-Regular.otf') format('otf');
+}
+@font-face {
+  font-family: 'Parmesan-bold';
+  src: url('./fonts/FbParmesan-Bold.otf') format('otf');
+}
+@font-face {
+  font-family: 'Avigul';
+  src: url('./fonts/._avigul-regular-fm.otf') format('otf');
+}
