@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Route, Routes, Link } from "react-router-dom"
+import { Route, Routes, Link, Outlet } from "react-router-dom"
 import styled from 'styled-components';
 import { Box, Grid, Flex, Text } from '../components/styledComponents';
 import sign from '../images/sign.png'
@@ -13,23 +13,6 @@ const StyledCard = styled(Flex)`
   border-radius: 0;
   position: relative;
   background: transparent url(${sign}) center center/100% 100% no-repeat;
-`
-const InnerSign = styled(Flex)`
-  border-radius: 0;
-  width: 80%;
-  height: 90%;
-  background: transparent url(${innerSign}) center center/contain no-repeat;
-`
-const Ribbon = styled(Flex)`
-  position: absolute;
-  top: 10%;
-  left: 60%;
-  transform-origin: center;
-  transform:
-    rotate(15deg)
-    translate(-50%, -50%);
-  width: 70%;
-  background: transparent url(${ribbon}) center center/contain no-repeat;
 `
 const Title = styled(Text)`
   font-size: ${prop => prop.fs || '55px'};
@@ -82,7 +65,7 @@ const Cards = ({ i }) => {
 
     if (i == 1) {
         return (
-            <StyledLink to="/Words">
+            <StyledLink to="/Options/Words">
                 <Title>מילים</Title>
                 <Description>
                     הרחבת <br />
@@ -94,7 +77,7 @@ const Cards = ({ i }) => {
     }
     else if (i == 2) {
         return (
-            <StyledLink to="/Sentences">
+            <StyledLink to="/Options/Sentences-Options">
                 <Title>משפטים</Title>
                 <Description>
                     השלמת <br />
@@ -106,7 +89,7 @@ const Cards = ({ i }) => {
     }
     else if (i == 3) {
         return (
-            <StyledLink to="/ByHear">
+            <StyledLink to="/Options/ByHear-Options">
                 <Title line_h="45px">לפי שמיעה</Title>
                 <Description>
                     הרחבת <br />
@@ -116,21 +99,21 @@ const Cards = ({ i }) => {
     }
     else if (i == 4) {
         return (
-            <StyledLink to="/">
+            <StyledLink to="/Options">
                 <Title>{i}</Title>
             </StyledLink>
         )
     }
     else if (i == 5) {
         return (
-            <StyledLink to="/">
+            <StyledLink to="/Options">
                 <Title>{i}</Title>
             </StyledLink>
         )
     }
     else if (i == 6) {
         return (
-            <StyledLink to="/">
+            <StyledLink to="/Options">
                 <Title>{i}</Title>
             </StyledLink>
         )
@@ -140,17 +123,19 @@ const Cards = ({ i }) => {
 const Options = () => {
 
     return (
-        <Grid direction="rtl" max_w="800px" rows="10% 90%">
-            <StyledText>בחירת אפשרות</StyledText>
-            
-            <Grid columns="repeat(3, 1fr)" rows="repeat(2, 1fr)" gap="15px" p="30px">
-                {[...Array(6)].map((card, i) =>
-                    <StyledCard key={i}>
-                        <Cards i={i + 1} />
-                    </StyledCard>
-                )}
+        <>
+            <Grid direction="rtl" max_w="800px" rows="10% 90%">
+                <StyledText>בחירת אפשרות</StyledText>
+
+                <Grid columns="repeat(3, 1fr)" rows="repeat(2, 1fr)" gap="15px" p="30px">
+                    {[...Array(6)].map((card, i) =>
+                        <StyledCard key={i}>
+                            <Cards i={i + 1} />
+                        </StyledCard>
+                    )}
+                </Grid>
             </Grid>
-        </Grid>
+        </>
     );
 }
 

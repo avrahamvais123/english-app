@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 
-function Countdown({ count, onCountChange }) {
+function Countdown({ count, onCountChange, color }) {
     useEffect(() => {
         const intervalId = setInterval(() => {
             onCountChange((currentCount) => {
@@ -19,8 +19,9 @@ function Countdown({ count, onCountChange }) {
     return (
         <span
             style={{
-                color: count >= 5 ? 'white' : 'red',
+                color: count >= 5 ? (color || 'white') : 'red',
                 fontSize: count >= 5 ? '25px' : '35px',
+                fontWeight: 'bold'
             }}
         >
             {count}

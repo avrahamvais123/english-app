@@ -1,47 +1,159 @@
 import React, { createContext, useState, useEffect, useRef } from 'react';
-import { Route, Routes, Link } from "react-router-dom"
-import styled, { StyleSheetManager, createGlobalStyle } from 'styled-components';
+import styled, { StyleSheetManager, createGlobalStyle, css } from 'styled-components';
 import { Grid, Flex, Text } from './components/styledComponents';
-import Options from './screens/Options';
-import Words from './screens/Words';
 import Header from './components/Header';
 import background1 from './images/game-background-1.jpg';
-import cursor from './images/cursor.png';
 import cursor_click from './images/cursor-click.png';
+import cursor from './images/cursor.png';
+import Cursor from './components/Cursor';
 import { MantineProvider } from '@mantine/core';
+import Routes from './Routes';
+import Breadcrumbs from './components/Breadcrumbs';
 
 
 export const Context = createContext();
 
 
+const fonts = css`
+  @font-face {
+  font-family: 'Nectarina';
+  src: url('/fonts/._Nectarina-Regular.otf') format('otf');
+  }
+  @font-face {
+    font-family: 'Malkush';
+    src: url('/fonts/MalkushRegular.otf') format('otf');
+  }
+  @font-face {
+    font-family: 'Parmesan';
+    src: url('/fonts/FbParmesan-Regular.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Matador-Light';
+    src: url('/fonts/FbMatador-Light.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Matador-Regular';
+    src: url('/fonts/FbMatador-Regular.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Matador-Medium';
+    src: url('/fonts/FbMatador-Medium.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Matador-Bold';
+    src: url('/fonts/FbMatador-Bold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Matador-Black';
+    src: url('/fonts/FbMatador-Black.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Oleo-Regular';
+    src: url('/fonts/OleoScript-Regular.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Pragmati-Light';
+    src: url('/fonts/FbPragmati-Light.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Pragmati-Regular';
+    src: url('/fonts/FbPragmati-Regular.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Pragmati-Bold';
+    src: url('/fonts/FbPragmati-Bold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Pragmati-Black';
+    src: url('/fonts/FbPragmati-Black.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Byaliq-Light';
+    src: url('/fonts/FbByaliq-Light.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Byaliq-Regular';
+    src: url('/fonts/FbByaliq-Regular.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Byaliq-Medium';
+    src: url('/fonts/FbByaliq-Medium.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Byaliq-Bold';
+    src: url('/fonts/FbByaliq-Bold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Byaliq-Black';
+    src: url('/fonts/FbByaliq-Black.woff') format('woff');
+  }
+
+  // <--- english fonts ---> //
+  @font-face {
+    font-family: 'Oleo-Bold';
+    src: url('/fonts/OleoScript-Bold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Adorable';
+    src: url('/fonts/Adorable-Font-6.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'grumbear';
+    src: url('/fonts/grumbear-grumbear-400.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'nora-notes';
+    src: url('/fonts/nora-notes-nora-notes-400.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'aquatic';
+    src: url('/fonts/aquatic-aquatic-400.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'gamking';
+    src: url('/fonts/gamking-400.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'MEOOW';
+    src: url('/fonts/MEOOW.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'MatadorEn-Light';
+    src: url('/fonts/FbMatadorEn-Light.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'MatadorEn-Regular';
+    src: url('/fonts/FbMatadorEn-Regular.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'MatadorEn-Medium';
+    src: url('/fonts/FbMatadorEn-Medium.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'MatadorEn-Bold';
+    src: url('/fonts/FbMatadorEn-Bold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'MatadorEn-Black';
+    src: url('/fonts/FbMatadorEn-Black.woff') format('woff');
+  }
+`;
+
 const GlobalStyle = createGlobalStyle`
   *{
     box-sizing: border-box;
     //cursor: none;
-    //font-family: "Malkush";
   }
   html, body{
     margin: auto 0;
     padding: 0;
+    font-family: "Matador-Medium";
   }
-
   ::selection {
     background: red;
     color: white;
   }
-
-  @font-face {
-  font-family: 'Nectarina';
-  src: url('./fonts/._Nectarina-Regular.otf') format('otf');
-  }
-  @font-face {
-    font-family: 'Malkush';
-    src: url('./fonts/MalkushRegular.otf') format('otf');
-  }
-  @font-face {
-    font-family: 'Parmesan';
-    src: url('./fonts/FbParmesan-Regular.otf') format('otf');
-  }
+  ${fonts}
 `;
 const ContainerAll = styled.div`
   direction: rtl;
@@ -68,27 +180,13 @@ const Contents = styled.div`
   grid-template-rows: repeat(1, 1fr);
   place-items: center;
   padding: 30px;
-`
+`;
 const Footer = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
   place-items: center;
-`
-const Cursor = styled.img.attrs(props => ({
-  style: {
-    top: `${props.top}px`,
-    left: `${props.left}px`,
-  },
-}))`
-  position: absolute;
-  pointer-events: none; 
-  width: 30px;
-  height: 60px;
-  z-index: 1000;
-  filter: drop-shadow(-1px 1px 2px rgba(0, 0, 0, 0.3));
 `;
-
 
 
 function App() {
@@ -106,32 +204,6 @@ function App() {
     money, setMoney,
     time, setTime,
   };
-
-  const FetchData = async (text) => {
-    const url = 'https://open-ai21.p.rapidapi.com/texttospeech';
-    const options = {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'X-RapidAPI-Key': '3a3f8aa681msh73981c40e80504ap11b6bfjsne64c6bde1e03',
-        'X-RapidAPI-Host': 'open-ai21.p.rapidapi.com'
-      },
-      body: new URLSearchParams({
-        text: text
-      })
-    };
-
-    try {
-      const response = await fetch(url, options);
-      const result = await response.json(); // use json() instead of text()
-      const mp3Link = result.url; // depending on the structure of your response
-      let audio = new Audio(mp3Link);
-      audio.play();
-
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
 
   return (
@@ -155,16 +227,14 @@ function App() {
             <Cursor
               top={position.y}
               left={position.x}
-              src={click} alt="cursor"
+              src={click}
             />
 
             <Header />
+            <Breadcrumbs />
 
             <Contents>
-              <Routes>
-                <Route path="/" element={<Options />} />
-                <Route path="/Words" element={<Words />} />
-              </Routes>
+              <Routes />
             </Contents>
 
             <Footer>כל הזכויות שמורות לזוהר בע''מ</Footer>

@@ -1,24 +1,25 @@
 import React, { useContext } from 'react';
 import { Context } from '../App';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { Box, Grid, Flex, Text, Badge } from './styledComponents';
-import time_icon from '../images/time-icon.png';
-import money_icon from '../images/money-icon.png';
+import { Box, Grid, Flex, Text, Modal } from './styledComponents';
+import money_icon from '../GUI Kit/money-icon.png';
+import time_icon from '../GUI Kit/stopwatch.png';
 import Translator from './Translator';
+import Breadcrumbs from './Breadcrumbs';
 
 
 
 const StyledHeader = styled.div`
+  position: relative;
   width: 100%;
   height: 40px;
   display: flex;
-  //grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-content: space-between;
   padding: 5px 30px;
+  //border-bottom: 1px solid white;
   z-index: 100;
-  //background-color: red;
-  //background: rgba(255, 255, 255, .2);
 `;
 const Wrapper = styled(Flex)`
   width: fit-content;
@@ -32,6 +33,13 @@ const TimeIcon = styled.img`
   position: relative;
   height: 100%;
   z-index: 10;
+`;
+const ContainerModal = styled(Modal)`
+  top: 200%;
+  left: 90%;
+  width: fit-content;
+  gap: 10px;
+  background-color: red;
 `;
 
 

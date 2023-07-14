@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { Box, Grid, Flex, Text } from '../components/styledComponents';
+import { Box, Grid, Flex, Text } from './components/styledComponents';
 
 
 

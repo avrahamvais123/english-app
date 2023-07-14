@@ -1,3 +1,19 @@
+import Color from 'color';
+
+
+export const lightColor = (color, num) => Color(color).lighten(num || 0.2).string();
+export const darkColor = (color, num) => Color(color).darken(num || 0.2).string();
+export const whiteColor = (color, num) => Color(color).whiten(num || 0.2).string();
+export const blackColor = (color, num) => Color(color).blacken(num || 0.2).string();
+export const fadeColor = (color, num) => Color(color).fade(num || 0.2).string();
+
+//export const sconedColor = '#8A5142';
+export const primary = '#4e2623';
+export const secondary = '#c28156';
+export const green = '#08bf76';
+export const red = '#ac2525';
+
+
 export const colors = {
     "dark-0": "#000000",
     "dark-1": "#C1C2C5",
