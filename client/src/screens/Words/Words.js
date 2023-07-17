@@ -6,11 +6,11 @@ import { Box, Grid, Flex, Text, Modal } from '../../components/styledComponents'
 import _ from 'lodash';
 import * as allWords from '../../words/allWords'
 import { speakText } from '../../components/Speech';
-import panel from '../../GUI Kit/panel.png'
 import WordsOptions from './Words-Options';
 import WordsStart from './Words-Start';
 import WordsResults from './Words-Results';
 import WordsTotal from './Words-Total';
+import panel from '../../GUI Kit/panel.png'
 
 
 const PanelContainer = styled(Flex)`
@@ -57,7 +57,7 @@ const Words = () => {
     };
 
     const resultProps = {
-        count, setMoney,
+        count, setCount, setMoney,
         initialCount, addSeconds,
         setCorrects, setCount,
         choice, setChoice,
@@ -71,7 +71,7 @@ const Words = () => {
     let element = useRoutes([
         { path: "/", element: <WordsOptions wordsArray={wordsArray} /> },
         { path: "Start", element: <WordsStart /> },
-        { path: "Results", element: <WordsResults resultProps={resultProps} step={step} count={count} setCount={setCount} /> },
+        { path: "Results", element: <WordsResults resultProps={resultProps} /> },
         { path: "Total", element: <WordsTotal resultProps={resultProps} /> },
     ]);
 

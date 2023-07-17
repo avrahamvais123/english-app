@@ -81,7 +81,7 @@ const App = () => {
   const translateText = async () => {
     try {
       const response = await axios.post(
-        `https://translation.googleapis.com/language/translate/v2?key=AIzaSyChGbLZMLKWzN5UpEzHhG6vd-BQ2I7y1tQ`,
+        `https://translation.googleapis.com/language/translate/v2?key=AIzaSyD1BoPHMrmSDxC3dlqrJNHhO2xHKGgvvjs`,
         {
           q: text,
           target: language[0], // השפה אליה אתה רוצה לתרגם

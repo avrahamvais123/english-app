@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef, forwardRef } from "react";
 import styled from 'styled-components';
+import anime from 'animejs';
 import { Flex } from '../../components/styledComponents';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { gsap } from "gsap";
 import "@fontsource/oswald";
 import "@fontsource/anton";
 import "@fontsource/chela-one";
-import { useUpdateEffect } from 'react-use';
 
 
 const primaryColor = '#4e2623';
@@ -33,82 +33,42 @@ const Word = styled(Flex)`
   font-weight: bold;
   letter-spacing: 2px;
 `;
-const AnimatedSquare = styled(motion.div)`
+const SquareNum = styled(Flex)`
   width: 100%;
   height: 100%;
   display: grid;
   place-items: center;
-  //background: red;
+  color: ${prop => prop.color};
+  transition: .1s;
   background: transparent url(${prop => prop.url}) center center / 100% 100% no-repeat;
 `;
-
 
 
 export function AnimatedSquareNum({ count, isCorrect, color, url, isChoice, setIsExploding, children }) {
     const squareRef = useRef(null);
     const shouldAnimate = count === 0 && isCorrect;
-    const duration = .5;
-    const times = [0, 0.25, 0.75, 1];
-    const stepOfAnim = duration * 1000 / times.length;
 
+    useEffect(() => {
+        let timeline = gsap.timeline();
 
-    useUpdateEffect(() => {
-        const timer = setTimeout(() => {
-            shouldAnimate && setIsExploding(prev => !prev);
-            console.log('האנימציה הגיעה לשלב השלישי!');
-        }, stepOfAnim * 2 - stepOfAnim); // התזמן לשלב השלישי של האנימציה
-
-        return () => clearTimeout(timer); // ביטול הטיימר אם הקומפוננטה מוסרת לפני שהטיימר מסתיים
-    }, [shouldAnimate]);
-
-
-    const variants = {
-        hidden: {
-            scale: 1,
-            rotate: 0,
-        },
-        visible: {
-            scale: [1, 2, 2, 1],
-            rotate: [0, 0, 360, 360],
-            transition: {
-                scale: {
-                    duration: duration,
-                    ease: "linear",
-                    times: times
-                },
-                rotate: {
-                    type: "spring",
-                    stiffness: 500,
-                    damping: 20,
-                    mass: 2,
-                    restSpeed: 2,
-                    restDelta: 0.01,
-                    delay: duration / 2  // add this line
-                },
-            },
-        },
-        exit: {
-            scale: 1,
-            rotate: 0,
+        if (shouldAnimate && isChoice) {
+            timeline.to(squareRef.current, { duration: 0.2, scale: 1.5, ease: "power2.inOut" })
+                .add(() => setIsExploding(true))
+                .to(squareRef.current, { duration: 0.3, rotation: 360, ease: "power2.inOut" })
+                .to(squareRef.current, { duration: 0.1, scale: 1, ease: "power2.inOut" });
+        } else {
+            gsap.killTweensOf(squareRef.current);
+            gsap.set(squareRef.current, { clearProps: "transform" });
         }
-    };
-
-    function onTap(event, info) {
-        console.log(info.point.x, info.point.y)
-    }
-
+    }, [shouldAnimate, setIsExploding, isChoice]);
 
     return (
-        <AnimatedSquare
-            onTap={onTap}
-            url={url}
-            variants={variants}
-            initial="hidden"
-            animate={shouldAnimate ? "visible" : "hidden"}
-            exit="exit"
+        <SquareNum
+            ref={squareRef}
+            style={{ color, background: `transparent url(${url}) center center / 100% 100% no-repeat` }}
         >
             {children}
-        </AnimatedSquare>
+        </SquareNum>
     );
 };
 
@@ -149,3 +109,12 @@ export const AnimatedWord = forwardRef(({ children }, ref) => {
 });
 
 
+{/* text-shadow: 
+  -${sizeWord}px -${sizeWord}px ${strokeWord}, 
+    -${sizeWord}px 0px ${strokeWord}, 
+    -${sizeWord}px ${sizeWord}px ${strokeWord}, 
+    0px -${sizeWord}px ${strokeWord}, 
+    0px ${sizeWord}px ${strokeWord}, 
+    ${sizeWord}px -${sizeWord}px ${strokeWord}, 
+    ${sizeWord}px 0px ${strokeWord}, 
+    ${sizeWord}px ${sizeWord}px ${strokeWord}; */}

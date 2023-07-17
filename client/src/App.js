@@ -9,6 +9,8 @@ import Cursor from './components/Cursor';
 import { MantineProvider } from '@mantine/core';
 import Routes from './Routes';
 import Breadcrumbs from './components/Breadcrumbs';
+import Test from './Test';
+
 
 
 export const Context = createContext();
@@ -187,6 +189,7 @@ const Footer = styled.div`
   display: grid;
   place-items: center;
 `;
+
 
 
 function App() {

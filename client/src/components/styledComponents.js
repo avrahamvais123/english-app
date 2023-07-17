@@ -17,6 +17,7 @@ export const Box = styled.div`
   border: ${prop => prop.b};
   border-radius: ${prop => prop.radius};
   margin: ${prop => prop.m};
+  margin-bottom: ${prop => prop.mb};
   padding: ${prop => prop.p};
   display: ${prop => prop.display};
   gap: ${prop => prop.gap};

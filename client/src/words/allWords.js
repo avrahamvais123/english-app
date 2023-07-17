@@ -342,7 +342,7 @@ export const professions = {
 };
 
 export const musics = {
-    title: 'כלי נגנה',
+    title: 'כלי נגינה',
     words: [
         { en: "Piano", he: "פסנתר", pronunciation: "פִּיָאנוֹ" },
         { en: "Guitar", he: "גיטרה", pronunciation: "גִּיטָּאר" },
@@ -495,7 +495,7 @@ export const clothings = {
         { en: "Raincoat", he: "מעיל גשם", pronunciation: "רֵינקוֹט" },
         { en: "Uniform", he: "מדים", pronunciation: "יוּנִיפוֹרם" },
         { en: "Bathrobe", he: "חלוק אמבטיה", pronunciation: "בַּאתְרוֹב" },
-        { en: "Earmuffs", he: "חמימי אוזניים", pronunciation: "אִירמַּאףְס" },
+        { en: "Earmuffs", he: "מחממי אוזניים", pronunciation: "אִירמַּאףְס" },
         { en: "Cap", he: "כובע קסקט", pronunciation: "כַּאפּ" },
         { en: "Flip-flops", he: "כפכפים", pronunciation: "פְּלִיפ-פְּלָאפְס" },
         { en: "Apron", he: "סינר", pronunciation: "אֵייפְרוֹן" },

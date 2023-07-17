@@ -80,7 +80,7 @@ const WordsStart = () => {
 
 
     return (
-        <Flex dir="column" justify="space-between" p="25%">
+        <Flex dir="column" justify="space-between" p="35%">
             <Title w="fit-content" h="fit-content" color="#08BF76"
             >{option.title}
             </Title>

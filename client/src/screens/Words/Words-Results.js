@@ -17,16 +17,16 @@ const Headers = styled(Modal)`
 `;
 
 
-const WordsResults = ({ resultProps, step, count, setCount }) => {
-    const location = useLocation();
+const WordsResults = ({ resultProps, resultProps: { step, count, setCount } }) => {
+    const { state: { words } } = useLocation();
 
 
     return (
         <>
-            <Results words={location.state.words} props={resultProps} />
+            <Results words={words} props={resultProps} />
             <Headers>
                 <Text fs="18px" h="fit-content">
-                    {`${step + 1}/${location.state.words.length}`}
+                    {`${step + 1}/${words.length}`}
                 </Text>
                 <Text fs="18px" h="fit-content">
                     <Countdown color={primary} count={count} onCountChange={setCount} />
