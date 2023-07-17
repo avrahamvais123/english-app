@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fontsource/anton": "^5.0.5",
+    "@fontsource/assistant": "^5.0.5",
     "@fontsource/chela-one": "^5.0.5",
     "@fontsource/oswald": "^5.0.5",
     "@lingui/cli": "^4.3.0",

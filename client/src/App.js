@@ -10,6 +10,11 @@ import { MantineProvider } from '@mantine/core';
 import Routes from './Routes';
 import Breadcrumbs from './components/Breadcrumbs';
 import Test from './Test';
+import MotionSVG from './motionSVG';
+import "@fontsource/oswald";
+import "@fontsource/anton";
+import "@fontsource/chela-one";
+import "@fontsource/assistant";
 
 
 
@@ -145,11 +150,12 @@ const GlobalStyle = createGlobalStyle`
   *{
     box-sizing: border-box;
     //cursor: none;
+    font-family: "Assistant";
   }
   html, body{
     margin: auto 0;
     padding: 0;
-    font-family: "Matador-Medium";
+    //font-family: "Matador-Medium";
   }
   ::selection {
     background: red;

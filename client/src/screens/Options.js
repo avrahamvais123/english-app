@@ -3,8 +3,6 @@ import { Route, Routes, Link, Outlet } from "react-router-dom"
 import styled from 'styled-components';
 import { Box, Grid, Flex, Text } from '../components/styledComponents';
 import sign from '../images/sign.png'
-import innerSign from '../images/inner-sign.png'
-import ribbon from '../images/ribbon.png'
 
 
 
@@ -18,13 +16,13 @@ const Title = styled(Text)`
   font-size: ${prop => prop.fs || '55px'};
   font-weight: bold;
   line-height: ${prop => prop.line_h || '30px'};
-  font-family: 'Nectarina';
+  //font-family: 'Nectarina';
   letter-spacing: 2px;
 `
 const Description = styled(Text)`
   font-size: 20px;
   line-height: 22px;
-  font-family: 'Malkush';
+  //font-family: 'Malkush';
   width: 100%;
   height: 100%;
 `
@@ -33,7 +31,7 @@ const StyledText = styled(Text)`
   transform: translate(0%, -20%);
   font-size: 70px;
   font-weight: 500;
-  font-family: 'Nectarina';
+  //font-family: 'Nectarina';
   color: #ffc388;
 
   &::before {
